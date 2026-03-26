@@ -93,7 +93,7 @@ export function AdminSidebar() {
               </p>
               {section.items.map((item) => {
                 const Icon = item.icon
-                const isActive = pathname?.startsWith(item.href) || false
+                const isActive = (pathname && pathname.startsWith(item.href)) || false
                 return (
                   <Link
                     key={item.href}
