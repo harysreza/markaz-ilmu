@@ -45,3 +45,6 @@ next-env.d.ts
 !/public/uploads/.gitkeep
 !/public/uploads/ebooks/.gitkeep
 !/public/uploads/covers/.gitkeep
+
+.vercel
+.env*.local
