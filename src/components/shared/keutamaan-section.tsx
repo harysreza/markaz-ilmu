@@ -29,7 +29,7 @@ export function KeutamaanSection({
         </h2>
         
         <blockquote className="text-3xl md:text-5xl font-script text-primary/80 leading-tight max-w-3xl mx-auto">
-          "{quote}"
+          &ldquo;{quote}&rdquo;
         </blockquote>
 
         <div className="flex flex-col items-center gap-6 pt-10">

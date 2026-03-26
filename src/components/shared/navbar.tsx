@@ -26,7 +26,7 @@ export function Navbar() {
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/"
-    return pathname.startsWith(path)
+    return pathname?.startsWith(path) || false
   }
 
   const toggleAccordion = (name: string) => {
@@ -55,9 +55,9 @@ export function Navbar() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center">
             <div className="h-8 md:h-10 flex items-center">
-              <img 
-                src={(MarkazIlmuWhite as any).src || MarkazIlmuWhite} 
-                alt="Markaz Ilmu" 
+              <img
+                src={typeof MarkazIlmuWhite === 'string' ? MarkazIlmuWhite : MarkazIlmuWhite.src}
+                alt="Markaz Ilmu"
                 className="h-full w-auto object-contain dark:brightness-100 brightness-0 transition-all"
               />
             </div>
@@ -106,7 +106,7 @@ export function Navbar() {
               href="/doa-dzikir" 
               className={`text-sm font-medium transition-colors hover:text-primary relative group ${isActive('/doa-dzikir') ? 'text-primary font-bold' : 'text-muted-foreground'}`}
             >
-              Do'a & Dzikir
+              Do&apos;a & Dzikir
               {isActive('/doa-dzikir') && (
                 <motion.div layoutId="navbar-active" className="absolute -bottom-[22px] left-0 right-0 h-1 bg-primary rounded-full" />
               )}
@@ -319,7 +319,7 @@ export function Navbar() {
                           : 'bg-white dark:bg-slate-950 border-slate-100 dark:border-slate-800/50 text-slate-900 dark:text-slate-100'
                       }`}
                     >
-                      Do'a & Dzikir
+                      Do&apos;a & Dzikir
                     </Link>
                     <Link
                       href="/artikel"

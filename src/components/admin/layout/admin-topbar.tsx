@@ -50,7 +50,7 @@ const roleLabels: Record<string, string> = {
 export function AdminTopbar({ user }: AdminTopbarProps) {
   const pathname = usePathname()
 
-  const segments = pathname.split("/").filter(Boolean)
+  const segments = pathname?.split("/").filter(Boolean) || []
   const breadcrumbs: { label: string; href: string }[] = []
   let current = ""
   for (const seg of segments) {

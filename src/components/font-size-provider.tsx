@@ -28,14 +28,15 @@ const FONT_SCALES: Record<FontSize, string> = {
 }
 
 export const FontSizeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [fontSize, setFontSizeState] = useState<FontSize>("base")
-
-  useEffect(() => {
-    const saved = localStorage.getItem("font-size") as FontSize
-    if (saved && FONT_SIZES[saved]) {
-      setFontSizeState(saved)
+  const [fontSize, setFontSizeState] = useState<FontSize>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("font-size") as FontSize
+      if (saved && FONT_SIZES[saved]) {
+        return saved
+      }
     }
-  }, [])
+    return "base"
+  })
 
   const setFontSize = (size: FontSize) => {
     setFontSizeState(size)

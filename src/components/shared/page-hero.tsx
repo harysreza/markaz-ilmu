@@ -4,13 +4,13 @@ import * as React from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import DefaultHeroImg from "@/assets/Tower.jpg"
 
 interface PageHeroProps {
   title: string
   description: string
-  backgroundImage?: any
+  backgroundImage?: string | StaticImageData
   children?: React.ReactNode
   showBackButton?: boolean
   backButtonHref?: string

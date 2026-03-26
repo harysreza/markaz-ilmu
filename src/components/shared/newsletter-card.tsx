@@ -22,7 +22,7 @@ export function NewsletterCard() {
           <div className="space-y-3">
             <h4 className="text-3xl md:text-4xl font-display italic uppercase leading-[0.9] tracking-tighter text-slate-900 dark:text-white">
               Update <br />
-              <span className="text-primary italic">Ilmu Syar'i</span>
+              <span className="text-primary italic">Ilmu Syar&apos;i</span>
             </h4>
             <p className="text-sm text-muted-foreground font-medium leading-relaxed max-w-[240px] mx-auto text-balance">
               Dapatkan mutiara faedah dan jadwal kajian langsung di inbox Anda.

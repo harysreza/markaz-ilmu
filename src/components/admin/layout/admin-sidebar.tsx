@@ -68,7 +68,7 @@ export function AdminSidebar() {
           if (!section.items) {
             // Top-level item (Dashboard)
             const Icon = section.icon!
-            const isActive = pathname === section.href
+            const isActive = pathname === section.href || false
             return (
               <Link
                 key={section.href}
@@ -93,7 +93,7 @@ export function AdminSidebar() {
               </p>
               {section.items.map((item) => {
                 const Icon = item.icon
-                const isActive = pathname.startsWith(item.href)
+                const isActive = pathname?.startsWith(item.href) || false
                 return (
                   <Link
                     key={item.href}

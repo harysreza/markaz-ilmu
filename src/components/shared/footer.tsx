@@ -18,7 +18,7 @@ export function Footer() {
             />
           </Link>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Media dakwah sunnah untuk menebarkan ilmu syar'i berdasarkan Al-Qur'an dan As-Sunnah sesuai pemahaman para sahabat Nabi.
+            Media dakwah sunnah untuk menebarkan ilmu syar&apos;i berdasarkan Al-Qur&apos;an dan As-Sunnah sesuai pemahaman para sahabat Nabi.
           </p>
           <div className="flex items-center gap-4">
             <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -50,7 +50,7 @@ export function Footer() {
           <h3 className="font-display italic uppercase mb-6 text-primary tracking-wider">Alamat</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Jl. Raya Sunnah No. 123<br />
-            Kec. Ilmu Syar'i, Kota Jakarta<br />
+            Kec. Ilmu Syar&apos;i, Kota Jakarta<br />
             Indonesia, 12345
           </p>
           <p className="text-sm text-muted-foreground mt-4">
