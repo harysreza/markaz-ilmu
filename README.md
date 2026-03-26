@@ -213,7 +213,7 @@ PRAYER_TIME_API_KEY="your-api-key"
 
 Lihat [.env.example](.env.example) untuk konfigurasi lengkap. -->
 
----
+<!-- --- -->
 
 ## 🧪 Available Scripts
 
