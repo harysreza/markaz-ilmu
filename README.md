@@ -33,17 +33,12 @@
 
 ### 🔹 Portal Publik
 
-| Fitur                | Deskripsi                                                                    |
-| -------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------- | --- |
-| **📝 Artikel**       | Konten kajian dalam bentuk teks dengan kategori (Fiqih, Akidah, Akhlak, dll) |
-| **🎥 Video Kajian**  | Integrasi YouTube untuk kajian video dari ustadz pilihan                     |
-| <!--                 | **🎧 Audio Kajian**                                                          | Streaming audio kajian dan podcast Islami             | --> |
-| **📖 E-Book**        | Library digital untuk baca online atau download PDF                          |
-| **🤲 Doa & Dzikir**  | Koleksi doa harian dengan teks Arab, transliterasi, dan terjemahan           |
-| **📅 Jadwal Kajian** | Kalender kajian rutin (offline/online)                                       |
-| **🕌 Jadwal Sholat** | Waktu sholat otomatis berdasarkan lokasi                                     |
-| <!--                 | **❓ Tanya Jawab**                                                           | Forum untuk bertanya seputar agama ke ustadz          | --> |
-| <!--                 | **💰 Donasi**                                                                | Transparansi kampanye donasi dengan progress tracking | --> |
+- **Jadwal Kajian** — Kalender kajian rutin (offline/online)
+- **Jadwal Sholat** — Waktu sholat otomatis berdasarkan lokasi
+- **Doa & Dzikir** — Koleksi doa harian dengan teks Arab, transliterasi, dan terjemahan
+- **Artikel** — Konten kajian dalam bentuk teks dengan kategori (Fiqih, Akidah, Akhlak, dll)
+- **E-Book** — Library digital untuk baca online atau download PDF
+- **Video Kajian** — Integrasi YouTube untuk kajian video dari ustadz pilihan
 
 ### 🔹 Admin Panel (CMS)
 
