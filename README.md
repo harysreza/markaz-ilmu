@@ -9,7 +9,7 @@
 [![Prisma](https://img.shields.io/badge/Prisma-5.22.0-2D3748?style=flat&logo=prisma)](https://www.prisma.io/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 
-[Demo](#) • [Dokumentasi](./docs) • [Lapor Bug](https://github.com/yourusername/markaz-ilmu/issues)
+<!-- [Demo](#) • [Dokumentasi](./docs) • [Lapor Bug](https://github.com/yourusername/markaz-ilmu/issues) -->
 
 </div>
 
