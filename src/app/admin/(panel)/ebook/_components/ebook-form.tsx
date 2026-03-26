@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { upload } from "@vercel/blob/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -29,29 +30,21 @@ export function EbookForm({ ebook }: { ebook?: Ebook }) {
   async function handlePdfUpload(file: File) {
     setUploadingPdf(true)
     try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("type", "pdf")
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
+      // Use Vercel Blob client-side upload for large files
+      const blob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/upload",
       })
 
-      const data = await res.json()
-      if (data.success) {
-        setForm(p => ({
-          ...p,
-          fileUrl: data.url,
-          fileSize: `${(data.size / 1024 / 1024).toFixed(2)} MB`
-        }))
-        setPdfFile(file)
-      } else {
-        alert(data.error || "Gagal upload PDF")
-      }
+      setForm(p => ({
+        ...p,
+        fileUrl: blob.url,
+        fileSize: `${(file.size / 1024 / 1024).toFixed(2)} MB`
+      }))
+      setPdfFile(file)
     } catch (error) {
       console.error(error)
-      alert("Gagal upload PDF")
+      alert(error instanceof Error ? error.message : "Gagal upload PDF")
     } finally {
       setUploadingPdf(false)
     }
@@ -60,25 +53,17 @@ export function EbookForm({ ebook }: { ebook?: Ebook }) {
   async function handleImageUpload(file: File) {
     setUploadingImage(true)
     try {
-      const formData = new FormData()
-      formData.append("file", file)
-      formData.append("type", "image")
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
+      // Use Vercel Blob client-side upload
+      const blob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/upload",
       })
 
-      const data = await res.json()
-      if (data.success) {
-        setForm(p => ({ ...p, thumbnail: data.url }))
-        setImageFile(file)
-      } else {
-        alert(data.error || "Gagal upload gambar")
-      }
+      setForm(p => ({ ...p, thumbnail: blob.url }))
+      setImageFile(file)
     } catch (error) {
       console.error(error)
-      alert("Gagal upload gambar")
+      alert(error instanceof Error ? error.message : "Gagal upload gambar")
     } finally {
       setUploadingImage(false)
     }

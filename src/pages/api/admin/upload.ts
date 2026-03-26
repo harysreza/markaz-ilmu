@@ -1,13 +1,5 @@
-import { IncomingForm, File as FormidableFile } from "formidable"
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client"
 import { NextApiRequest, NextApiResponse } from "next"
-import { readFile } from "fs/promises"
-import { put } from "@vercel/blob"
-
-export const config = {
-  api: {
-    bodyParser: false, // Disable default body parser
-  },
-}
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,80 +11,56 @@ export default async function handler(
 
   try {
     // TODO: Re-enable auth check after fixing NextAuth issue
-    // For now, allowing upload without auth for testing
+    // const session = await getServerSession(req, res, authOptions)
+    // if (!session) {
+    //   return res.status(401).json({ error: "Unauthorized" })
+    // }
 
-    console.log("=== Upload Started ===")
+    const body = req.body as HandleUploadBody
 
-    // Parse form data using formidable
-    const form = new IncomingForm()
-    const [fields, files] = await new Promise<
-      [Record<string, string[]>, Record<string, FormidableFile[]>]
-    >((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err)
-        else
-          resolve([
-            fields as Record<string, string[]>,
-            files as Record<string, FormidableFile[]>,
-          ])
-      })
+    // Handle client-side upload with Vercel Blob
+    const jsonResponse = await handleUpload({
+      body,
+      request: req,
+      onBeforeGenerateToken: async (pathname) => {
+        // Validate file type based on pathname
+        const ext = pathname.split(".").pop()?.toLowerCase()
+
+        const allowedExtensions = {
+          pdf: ["pdf"],
+          image: ["jpg", "jpeg", "png", "webp"],
+        }
+
+        const isPdf = allowedExtensions.pdf.includes(ext || "")
+        const isImage = allowedExtensions.image.includes(ext || "")
+
+        if (!isPdf && !isImage) {
+          throw new Error("Invalid file type")
+        }
+
+        // Generate unique pathname
+        const timestamp = Date.now()
+        const randomStr = Math.random().toString(36).substring(2, 8)
+        const folder = isPdf ? "ebooks" : "covers"
+
+        return {
+          allowedContentTypes: isPdf
+            ? ["application/pdf"]
+            : ["image/jpeg", "image/jpg", "image/png", "image/webp"],
+          tokenPayload: JSON.stringify({
+            // Optional: Add custom metadata
+          }),
+          maximumSizeInBytes: isPdf ? 50 * 1024 * 1024 : 5 * 1024 * 1024, // 50MB for PDF, 5MB for images
+          pathname: `${folder}/${timestamp}-${randomStr}-${pathname}`,
+        }
+      },
+      onUploadCompleted: async ({ blob, tokenPayload }) => {
+        console.log("Upload completed:", blob.url)
+        // Optional: Save to database or perform other actions
+      },
     })
 
-    const file = files.file?.[0]
-    const type = fields.type?.[0]
-
-    if (!file) {
-      return res.status(400).json({ error: "No file uploaded" })
-    }
-
-    console.log("File:", file.originalFilename, "Type:", type, "Size:", file.size)
-
-    // Validasi tipe file
-    const allowedTypes = {
-      pdf: ["application/pdf"],
-      image: ["image/jpeg", "image/jpg", "image/png", "image/webp"],
-    }
-
-    const validTypes = type === "pdf" ? allowedTypes.pdf : allowedTypes.image
-    if (!validTypes.includes(file.mimetype || "")) {
-      return res.status(400).json({
-        error: `Invalid file type. Allowed: ${validTypes.join(", ")}`,
-      })
-    }
-
-    // Validasi ukuran
-    const maxSize = type === "pdf" ? 50 * 1024 * 1024 : 5 * 1024 * 1024
-    if (file.size > maxSize) {
-      return res.status(400).json({
-        error: `File too large. Max: ${maxSize / 1024 / 1024}MB`,
-      })
-    }
-
-    // Read file
-    const fileBuffer = await readFile(file.filepath)
-
-    // Generate unique filename
-    const timestamp = Date.now()
-    const randomStr = Math.random().toString(36).substring(2, 8)
-    const ext = file.originalFilename?.split(".").pop() || "pdf"
-    const blobPath = `${type === "pdf" ? "ebooks" : "covers"}/${timestamp}-${randomStr}.${ext}`
-
-    console.log("Uploading to Blob:", blobPath)
-
-    // Upload to Vercel Blob
-    const blob = await put(blobPath, fileBuffer, {
-      access: "public",
-      contentType: file.mimetype || "application/octet-stream",
-    })
-
-    console.log("Upload success:", blob.url)
-
-    return res.status(200).json({
-      success: true,
-      url: blob.url,
-      filename: blob.pathname,
-      size: file.size,
-    })
+    return res.status(200).json(jsonResponse)
   } catch (error) {
     console.error("Upload error:", error)
     return res.status(500).json({
