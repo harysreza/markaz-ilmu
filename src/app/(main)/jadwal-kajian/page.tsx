@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { getPublishedEvents } from "@/lib/queries"
 import { JadwalKajianClientPage } from "./_components/JadwalKajianClientPage"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Jadwal Kajian",
   description:

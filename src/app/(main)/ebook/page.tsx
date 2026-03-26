@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { getPublishedEbooks } from "@/lib/queries"
 import { EBookClientPage } from "./_components/EBookClientPage"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Katalog E-Book",
   description:

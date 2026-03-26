@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { getPublishedDoas } from "@/lib/queries"
 import { DoaDzikirClientPage } from "./_components/DoaDzikirClientPage"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Do'a & Dzikir",
   description:

@@ -11,6 +11,8 @@ import { ScrollProgressBar } from "./_components/ScrollProgressBar"
 import { ArticleActionBar } from "./_components/ArticleActionBar"
 import { getArticleById, getTrendingArticles } from "@/lib/queries"
 
+export const dynamic = 'force-dynamic'
+
 type Props = { params: Promise<{ id: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

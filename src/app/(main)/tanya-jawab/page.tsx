@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { getPublishedQA } from "@/lib/queries"
 import { TanyaJawabClientPage } from "./_components/TanyaJawabClientPage"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Konsultasi Ilmiah",
   description:

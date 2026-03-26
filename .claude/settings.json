@@ -5,7 +5,13 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(openssl rand:*)"
+      "Bash(openssl rand:*)",
+      "Bash(grep -l \"from \"\"@/lib/queries\"\"\" src/app/\\\\\\(main\\\\\\)/**/page.tsx)",
+      "Bash(for file:*)",
+      "Bash(do)",
+      "Bash(if ! grep -q \"export const dynamic\" \"$file\")",
+      "Bash(then)",
+      "Bash(sed -i \"/export const metadata/i export const dynamic = ''force-dynamic''\\\\n\" \"$file\")"
     ]
   }
 }

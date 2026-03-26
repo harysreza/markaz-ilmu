@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { getPublishedArticles } from "@/lib/queries"
 import { ArtikelClientPage } from "./_components/ArtikelClientPage"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "Perpustakaan Artikel",
   description:
