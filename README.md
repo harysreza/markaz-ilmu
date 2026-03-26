@@ -144,7 +144,7 @@ Password: admin123
 
 ⚠️ **PENTING:** Ganti password default setelah login pertama!
 
----
+<!-- ---
 
 ## 📂 Struktur Proyek
 
@@ -179,7 +179,7 @@ markaz-ilmu/
 ├── docs/                     # Documentation
 ├── .env.example              # Environment variables template
 └── README.md
-```
+``` -->
 
 ---
 
@@ -192,7 +192,7 @@ markaz-ilmu/
 
 --- -->
 
-## 🔐 Environment Variables
+<!-- ## 🔐 Environment Variables
 
 Buat file `.env` di root directory dengan konfigurasi berikut:
 
@@ -211,7 +211,7 @@ BLOB_READ_WRITE_TOKEN="your-vercel-blob-token"
 PRAYER_TIME_API_KEY="your-api-key"
 ```
 
-Lihat [.env.example](.env.example) untuk konfigurasi lengkap.
+Lihat [.env.example](.env.example) untuk konfigurasi lengkap. -->
 
 ---
 
