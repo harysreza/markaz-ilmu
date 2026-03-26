@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx prisma:*)",
+      "Bash(npm install:*)",
+      "Bash(npx ts-node:*)",
+      "Bash(mkdir:*)",
+      "Bash(powershell:*)",
+      "Bash(ls:*)",
+      "Bash(npx tsc:*)",
+      "Bash(rm:*)",
+      "Bash(npm run:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(cp:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}

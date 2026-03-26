@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String     @id @default(cuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         String     @default("content_editor")
+  isActive     Boolean    @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  category    String
+  content     String
+  summary     String
+  thumbnail   String
+  author      String
+  isTrending  Boolean  @default(false)
+  status      String   @default("draft")
+  views       Int      @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  speaker     String
+  duration    String
+  category    String
+  youtubeId   String   @unique
+  views       String   @default("0")
+  isFeatured  Boolean  @default(false)
+  status      String   @default("draft")
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Audio {
+  id          String   @id @default(cuid())
+  title       String
+  speaker     String
+  category    String
+  image       String
+  type        String
+  spotifyId   String   @unique
+  isFeatured  Boolean  @default(false)
+  status      String   @default("draft")
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ebook {
+  id             String   @id @default(cuid())
+  title          String
+  author         String
+  thumbnail      String
+  fileUrl        String
+  fileSize       String   @default("0 MB")
+  category       String
+  isReadOnline   Boolean  @default(true)
+  isDownloadable Boolean  @default(true)
+  downloadCount  Int      @default(0)
+  status         String   @default("draft")
+  publishedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model DoaDzikir {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  arabic      String
+  latin       String
+  translation String
+  source      String
+  order       Int      @default(0)
+  status      String   @default("draft")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  title           String
+  speaker         String
+  date            String
+  time            String
+  location        String
+  isOnline        Boolean  @default(false)
+  isFree          Boolean  @default(true)
+  registrationUrl String?
+  posterUrl       String
+  description     String
+  status          String   @default("upcoming")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model QA {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String?
+  category    String
+  askedBy     String   @default("Anonim")
+  askerEmail  String?
+  answeredBy  String   @default("Lajnah Ilmiah Markaz Ilmu")
+  status      String   @default("pending")
+  views       Int      @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DonationCampaign {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  targetAmount Float?
+  raisedAmount Float    @default(0)
+  posterUrl    String?
+  status       String   @default("active")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model BankAccount {
+  id            String   @id @default(cuid())
+  bankName      String
+  accountNumber String
+  accountName   String
+  whatsappNumber String
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  sourcePage   String?
+  isActive     Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+}
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id            String    @id @default(cuid())
+  actorId       String
+  actor         AdminUser @relation(fields: [actorId], references: [id])
+  action        String
+  resource      String
+  resourceId    String
+  resourceTitle String
+  oldValue      String?
+  newValue      String?
+  ipAddress     String?
+  timestamp     DateTime  @default(now())
+
+  @@index([actorId])
+  @@index([resource])
+  @@index([timestamp])
+}
