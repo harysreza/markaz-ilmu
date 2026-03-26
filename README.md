@@ -47,21 +47,21 @@ Panel administrasi lengkap dengan Role-Based Access Control (RBAC):
 - **Dashboard Analytics** — Statistik views, engagement, dan aktivitas pengguna
 - **Content Management** — CRUD untuk semua jenis konten (artikel, video, audio, ebook, doa)
 - **User Management** — Kelola admin dan moderator dengan role berbeda
-- **Moderation System** — Review dan approve pertanyaan Q&A
-- **Donation Monitoring** — Tracking dan konfirmasi donasi
+  <!-- - **Moderation System** — Review dan approve pertanyaan Q&A -->
+  <!-- - **Donation Monitoring** — Tracking dan konfirmasi donasi -->
 - **Configuration** — Pengaturan bank account, social links, featured content
-- **Audit Logging** — Tracking semua aktivitas admin untuk accountability
-- **Newsletter** — Broadcast email ke subscribers (upcoming)
+<!-- - **Audit Logging** — Tracking semua aktivitas admin untuk accountability
+- **Newsletter** — Broadcast email ke subscribers (upcoming) -->
 
-**Role Hierarchy:**
+<!-- **Role Hierarchy:**
 
 - 👑 Super Admin (full access)
 - 🛡️ Admin (manage content)
 - ⚖️ Moderator (Q&A moderation)
 - ✏️ Content Editor (create/edit only)
-- 👁️ Viewer (read-only analytics)
+- 👁️ Viewer (read-only analytics) -->
 
-### 🔹 Accessibility Features
+<!-- ### 🔹 Accessibility Features
 
 Platform ini dirancang untuk **semua kalangan**, termasuk lansia:
 
@@ -69,7 +69,7 @@ Platform ini dirancang untuk **semua kalangan**, termasuk lansia:
 - 🌙 **Dark Mode** mengurangi kelelahan mata
 - 📱 **Responsive Design** optimal di semua perangkat
 - 🎨 **High Contrast Mode** untuk pengguna dengan gangguan penglihatan
-- ⌨️ **Keyboard Navigation** support untuk accessibility tools
+- ⌨️ **Keyboard Navigation** support untuk accessibility tools -->
 
 ---
 
@@ -135,14 +135,14 @@ Buka browser dan akses:
 - **Frontend:** http://localhost:3000
 - **Admin Panel:** http://localhost:3000/admin/login
 
-### Default Admin Credentials
+<!-- ### Default Admin Credentials
 
 ```
 Email: admin@markazilmu.com
 Password: admin123
-```
+``` -->
 
-⚠️ **PENTING:** Ganti password default setelah login pertama!
+<!-- ⚠️ **PENTING:** Ganti password default setelah login pertama! -->
 
 <!-- ---
 
